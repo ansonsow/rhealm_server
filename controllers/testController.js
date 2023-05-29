@@ -11,13 +11,17 @@ const getTests = (req,res)=>{
         res.status(200).json(results);
     })
     .catch(error=>{
+      console.log(error);
         res.status(500).json(error);
     });
 }
 
 const saveTest = (req,res) =>{
     res.header("Access-Control-Allow-Origin", "*");
-    let newTest = new Test(req.body);
+    // let newTest = new Test(req.body);
+    const newTest = new Test({
+      name: 'First Test'
+    });
 
     newTest.save().then(
         result=>{
@@ -27,6 +31,7 @@ const saveTest = (req,res) =>{
         }
       ).catch(
         error=>{
+          // console.log(error);
           res.status(500)
              .json(error)
         }
