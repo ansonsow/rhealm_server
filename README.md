@@ -1,6 +1,6 @@
 # rhealm_server
 
-cd rhealm_server
+cd server
 
 npm install
 
