@@ -1,8 +1,11 @@
 # rhealm_server
 
 cd rhealm_server
+
 npm install
+
 copy the .env file from slack
+
 npm run dev
 
 after that if you go to 
