@@ -81,3 +81,5 @@ const saveUsers = async (req,res) =>{
   
   
   }
+
+module.exports = { saveUsers,loginUser };
