@@ -1,4 +1,10 @@
 let User = require("../models/users");
+var bcrypt = require('bcryptjs');
+// let bcrypt = require()
+
+const wtf = (req,res)=>{
+  res.status(201).json("wtf")
+}
 
 
 const saveUsers = async (req,res) =>{
@@ -82,4 +88,4 @@ const saveUsers = async (req,res) =>{
   
   }
 
-module.exports = { saveUsers,loginUser };
+module.exports = { saveUsers,loginUser,wtf };
