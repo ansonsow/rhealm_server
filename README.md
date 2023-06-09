@@ -16,3 +16,5 @@ You should be able to see data from the database:
 <img width="369" alt="image" src="https://github.com/ansonsow/rhealm_server/assets/25330392/c31cbfdf-52a3-4137-b939-c2130d64f9d2">
 
 Once this is confirmed, move on to [the front-end part](https://github.com/ansonsow/rhealm#readme).
+
+Jun 9 npm install bcryptjs
