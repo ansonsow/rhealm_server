@@ -18,3 +18,4 @@ You should be able to see data from the database:
 Once this is confirmed, move on to [the front-end part](https://github.com/ansonsow/rhealm#readme).
 
 Jun 9 npm install bcryptjs
+Jun 14 npm install jsonwebtoken
