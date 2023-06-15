@@ -3,7 +3,7 @@ let Closet = require('../models/closet');
 // get all the closet from one user.
 const getClosets = async (req,res)=>{
     res.header("Access-Control-Allow-Origin", "*");
-    console.log(req.body.userId);
+    // console.log(req.body.userId);
     const closet = Closet.find({userId:req.body.userId}).then(
         result=>{
             res.status(200).json(result)
