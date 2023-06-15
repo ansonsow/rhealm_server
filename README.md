@@ -19,3 +19,6 @@ Once this is confirmed, move on to [the front-end part](https://github.com/anson
 
 Jun 9 npm install bcryptjs
 Jun 14 npm install jsonwebtoken
+
+
+bug tracking testing
