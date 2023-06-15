@@ -1,10 +1,8 @@
 let User = require("../models/users");
-var bcrypt = require('bcryptjs');
+let bcrypt = require('bcryptjs');
+let jwt = require('jsonwebtoken')
 // let bcrypt = require()
 
-const wtf = (req,res)=>{
-  res.status(201).json("wtf")
-}
 
 
 const saveUsers = async (req,res) =>{
@@ -36,56 +34,56 @@ const saveUsers = async (req,res) =>{
       )
   };
 
-  const loginUser = async (req,res)=>{
-    const email = req.body.email;
-    // const user_id = req.body.user_id
-    const password = req.body.password;
-    // console.log()
-    const user = await User.findOne({email:email});
-  
-    if(user){
-      const rightPsw = await bcrypt.compare(password, user.password);
-  
-      if(rightPsw){
-  
-  
-        const token = jwt.sign(
-          { user_id: user.user_id,
-            _id:user._id, 
-            email:user.email,
-            type: user.type
-          },
-            process.env.TOKEN_KEY,
-          {
-            expiresIn: "2h",
-          }
-        );
-  
-        const localUser = user;
-        localUser.token = token
-  
-        const data = {
-          "message":"successfully login",
-          "data":localUser,
-          "token":token
-        };
-  
-        user.lastLogin = new Date(Date.now());
-        await user.save();
-        res.status(201).json(data)
-        
-      }else{
-        const data = {"message":"wrong password"};
-        console.log('wrong password');
-        res.status(401).json(data);
-      }
+const loginUser = async (req,res)=>{
+  // res.status(200).json("wat")
+  const email = req.body.email;
+  // // const user_id = req.body.user_id
+  const password = req.body.password;
+  // // console.log()
+  const user = await User.findOne({email:email});
+
+  if(user){
+    const rightPsw = await bcrypt.compare(password, user.password);
+
+    if(rightPsw){
+
+
+      const token = jwt.sign(
+        { user_id: user.user_id,
+          _id:user._id, 
+          email:user.email,
+          type: user.type
+        },
+          process.env.TOKEN_KEY,
+        {
+          expiresIn: "2h",
+        }
+      );
+
+      const localUser = user;
+      localUser.token = token
+
+      const data = {
+        "message":"successfully login",
+        "data":localUser,
+        "token":token
+      };
+
+      user.lastLogin = new Date(Date.now());
+      await user.save();
+      res.status(201).json(data)
+      
     }else{
-      const data = {"message":"user not found"};
-      res.status(404).json(data)
+      const data = {"message":"wrong password"};
+      console.log('wrong password');
+      res.status(401).json(data);
     }
-  
-  
-  
+  }else{
+    const data = {"message":"user not found"};
+    res.status(404).json(data)
   }
 
-module.exports = { saveUsers,loginUser,wtf };
+}
+
+
+module.exports = { saveUsers,loginUser };
