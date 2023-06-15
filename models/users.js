@@ -23,6 +23,9 @@ const usersSchema = new Schema({
     },
     colorDeficiency:{
         type: String
+    },
+    colorId:{
+        type:String
     }
 })
 
