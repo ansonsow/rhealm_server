@@ -49,10 +49,10 @@ const loginUser = async (req,res)=>{
 
 
       const token = jwt.sign(
-        { user_id: user.user_id,
+        { 
           _id:user._id, 
           email:user.email,
-          type: user.type
+          
         },
           process.env.TOKEN_KEY,
         {
@@ -84,6 +84,11 @@ const loginUser = async (req,res)=>{
   }
 
 }
+
+// const getUser = (req,res) => {
+//   const userId = req.body.userId;
+//   const findUser = new User().findOne({_id:userId})
+// }
 
 
 module.exports = { saveUsers,loginUser };
