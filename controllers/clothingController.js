@@ -63,7 +63,6 @@ const addToCloset = (req,res) => {
                     }
                 )
             }else{
-                // console.log("wat")
                 let closetArr = result.closetId;
                 closetArr.push(req.body.closetId)
                 Clothing.updateOne({_id:req.body.clothingId},
@@ -86,6 +85,59 @@ const addToCloset = (req,res) => {
     
 }
 
+const removeFromCloset = (req,res)=>{
+    res.header("Access-Control-Allow-Origin", "*");
+    let newClosets;
+
+    Clothing.findOne({_id:req.body.clothingId}).then(
+        result=>{
+            newClosets = result.closetId;
+            for (let index = 0; index < newClosets.length; index++) {
+                const element = newClosets[index];
+                if(element == req.body.closetId){
+                    newClosets.splice(index,1)
+                }
+            }
+
+            Clothing.updateOne({_id:req.body.clothingId},
+                               {closetId: newClosets}).then(
+                                   result=>{
+                                   }
+                               ).catch(
+                                   err=>{
+                                       res.status(500).json(err)
+                                   }
+                               )
+
+            res.status(200).json(result);
+            
+        }
+    ).catch(
+        err=>{
+            res.status(500).json(err)
+        }
+    )
+
+    
+
+    // Clothing.updateOne({_id:req.body.clothingId},
+    //                    {$pull})
+    
+}
+
+const removeClothing = (req,res)=>{
+    res.header("Access-Control-Allow-Origin", "*");
+    Clothing.removeOne({_id:req.body.clothingId}).then(
+        result=>{
+            res.status(200).json('deleted')
+        }
+    ).catch(
+        err=>{
+            res.status(500).json(err)
+        }
+    )
+}
+
 
 // const addTo
 
@@ -93,4 +145,4 @@ const wat = (req,res) => {
     res.status(200).json('wat')
 }
 
-module.exports = { getClosetClothing, getUserClothing ,saveClothing, addToCloset,wat };
+module.exports = { getClosetClothing, getUserClothing ,saveClothing, addToCloset, removeFromCloset, removeClothing ,wat };
