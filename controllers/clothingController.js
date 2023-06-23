@@ -1,10 +1,16 @@
 let Clothing = require('../models/clothing');
+let jwt = require('jsonwebtoken')
+
 
 const getUserClothing = (req,res)=>{
     res.header("Access-Control-Allow-Origin", "*");
     Clothing.find({userId:req.body.userId}).then(
         result=>{
-            res.status(200).json(result)
+
+            const data={
+                "data":result
+            }
+            res.status(200).json(data)
         }
     ).catch(
         err=>{

@@ -52,6 +52,7 @@ const loginUser = async (req,res)=>{
         { 
           _id:user._id, 
           email:user.email,
+          name:user.name
           
         },
           process.env.TOKEN_KEY,
@@ -69,7 +70,7 @@ const loginUser = async (req,res)=>{
         "token":token
       };
 
-      user.lastLogin = new Date(Date.now());
+      // user.lastLogin = new Date(Date.now());
       await user.save();
       res.status(201).json(data)
       
