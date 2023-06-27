@@ -146,9 +146,19 @@ const removeClothing = (req,res)=>{
 
 
 // const addTo
-
-const wat = (req,res) => {
-    res.status(200).json('wat')
+const editClothing = (req,res) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    Clothing.updateOne({_id:req.body.clothingId},
+                       {photo:req.body.photo,
+                        clothingCategory:req.body.clothingCategory}).then(
+                            response=>{
+                                res.status(200).json('updated')
+                            }
+                        ).catch(
+                            err=>{
+                                res.status(500).json('failed')
+                            }
+                        )
 }
 
-module.exports = { getClosetClothing, getUserClothing ,saveClothing, addToCloset, removeFromCloset, removeClothing ,wat };
+module.exports = { getClosetClothing, getUserClothing ,saveClothing, addToCloset, removeFromCloset, removeClothing, editClothing  };

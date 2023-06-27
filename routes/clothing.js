@@ -18,9 +18,10 @@ router.put('/clothing',clothingCtrl.addToCloset)
 // remove a clothing from a closet for given clothingId and closetId in req.body
 router.delete('/clothing/closet',clothingCtrl.removeFromCloset)
 
-
 // remove a clothing document
 router.delete('/clothing',clothingCtrl.removeClothing)
+
+router.put('/clothing/edit',clothingCtrl.editClothing)
 
 module.exports = router;
 

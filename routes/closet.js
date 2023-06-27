@@ -12,4 +12,7 @@ router.post('/closet',closetCtrl.saveCloset);
 // remove a closet, need to have closetId in req.body
 router.delete('/closet',closetCtrl.removeCloset)
 
+// update closet endpoint
+router.put('/closet', closetCtrl.updateCloset)
+
 module.exports = router;
