@@ -8,6 +8,10 @@ const clothingSchema = new Schema({
         require:true,
     },
 
+    name:{
+        type:String
+    },
+
     closetId:{
         type:[String],
     },
