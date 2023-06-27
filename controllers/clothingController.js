@@ -4,9 +4,10 @@ let jwt = require('jsonwebtoken')
 
 const getUserClothing = (req,res)=>{
     res.header("Access-Control-Allow-Origin", "*");
-    Clothing.find({userId:req.body.userId}).then(
+    // console.log(req.params.userId)
+    Clothing.find({userId:req.params.userId}).then(
         result=>{
-
+            console.log(result)
             const data={
                 "data":result
             }
@@ -21,7 +22,7 @@ const getUserClothing = (req,res)=>{
 
 const getClosetClothing = (req,res)=>{
     res.header("Access-Control-Allow-Origin", "*");
-    Clothing.find({closetId:{$in:req.body.closetId}}).then(
+    Clothing.find({closetId:{$in:req.params.closetId}}).then(
         result=>{
             res.status(200).json(result)
         }

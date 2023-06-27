@@ -4,10 +4,10 @@ const router = express.Router();
 const clothingCtrl = require('../controllers/clothingController')
 
 // get all the clothing for given userId in req.body
-router.get('/clothing/user', clothingCtrl.getUserClothing)
+router.get('/clothing/user/:userId', clothingCtrl.getUserClothing)
 
 // get all the clothing for given closetId in req.body
-router.get('/clothing/closet', clothingCtrl.getClosetClothing)
+router.get('/clothing/closet/:closetId', clothingCtrl.getClosetClothing)
 
 // create a new clothing document
 router.post('/clothing',clothingCtrl.saveClothing)

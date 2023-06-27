@@ -87,7 +87,7 @@ const loginUser = async (req,res)=>{
 }
 
 const getUser = (req,res) => {
-  const userId = req.body.userId;
+  const userId = req.params.userId;
   User.findOne({_id:userId}).then(
     result=>{
       res.status(200).json(result);

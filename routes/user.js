@@ -7,7 +7,7 @@ router.post('/register', userCtrl.saveUsers)
 router.post('/login', userCtrl.loginUser)
 
 
-router.get('/user',userCtrl.getUser)
+router.get('/user/:userId',userCtrl.getUser)
 
 router.put('/user',userCtrl.editUser)
 
