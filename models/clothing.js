@@ -8,6 +8,10 @@ const clothingSchema = new Schema({
         require:true,
     },
 
+    name:{
+        type:String
+    },
+
     closetId:{
         type:[String],
     },
@@ -16,11 +20,19 @@ const clothingSchema = new Schema({
         type:[String]
     },
 
-    color:{
+    colour:{
         type:String
     },
 
     clothingCategory:{
+        type:String
+    },
+
+    type:{
+        type:String
+    },
+
+    texture:{
         type:String
     }
 })
