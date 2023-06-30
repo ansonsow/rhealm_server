@@ -4,7 +4,7 @@ let Closet = require('../models/closet');
 const getClosets = async (req,res)=>{
     res.header("Access-Control-Allow-Origin", "*");
     // console.log(req.body.userId);
-    const closet = Closet.find({userId:req.body.userId}).then(
+    Closet.find({userId:req.params.userId}).then(
         result=>{
             res.status(200).json(result)
         }
@@ -45,4 +45,18 @@ const removeCloset = (req,res) => {
     )
 }
 
-module.exports = { getClosets,saveCloset, removeCloset };
+const updateCloset = (req,res) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    Closet.updateOne({_id:req.body.closetId},
+                     {name:req.body.name}).then(
+        res=>{
+            console.log(res)
+        }
+    ).catch(
+        err=>{
+            console.log(err)
+        }
+    )
+}
+
+module.exports = { getClosets,saveCloset, removeCloset, updateCloset };

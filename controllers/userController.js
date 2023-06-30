@@ -52,6 +52,7 @@ const loginUser = async (req,res)=>{
         { 
           _id:user._id, 
           email:user.email,
+          name:user.name
           
         },
           process.env.TOKEN_KEY,
@@ -69,7 +70,7 @@ const loginUser = async (req,res)=>{
         "token":token
       };
 
-      user.lastLogin = new Date(Date.now());
+      // user.lastLogin = new Date(Date.now());
       await user.save();
       res.status(201).json(data)
       
@@ -85,10 +86,34 @@ const loginUser = async (req,res)=>{
 
 }
 
-// const getUser = (req,res) => {
-//   const userId = req.body.userId;
-//   const findUser = new User().findOne({_id:userId})
-// }
+const getUser = (req,res) => {
+  const userId = req.params.userId;
+  User.findOne({_id:userId}).then(
+    result=>{
+      res.status(200).json(result);
+    }
+  ).catch(
+    err=>{
+      res.status(200).json(err)
+    }
+  )
+}
+
+const editUser = (req,res) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  User.updateOne({_id:req.body.userId},
+                 {profilePhoto:req.body.profilePhoto,
+                  hairColor:req.body.hairColor}).then(
+                    result=>{
+                      res.status(200).json('success')
+                    }
+                  ).catch(
+                    err=>{
+                      res.status(500).json('failed')
+                    }
+                  )
+
+}
 
 
-module.exports = { saveUsers,loginUser };
+module.exports = { saveUsers,loginUser,getUser,editUser };
