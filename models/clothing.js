@@ -20,11 +20,19 @@ const clothingSchema = new Schema({
         type:[String]
     },
 
-    color:{
+    colour:{
         type:String
     },
 
     clothingCategory:{
+        type:String
+    },
+
+    type:{
+        type:String
+    },
+
+    texture:{
         type:String
     }
 })
