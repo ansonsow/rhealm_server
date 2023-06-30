@@ -1,10 +1,17 @@
 let Clothing = require('../models/clothing');
+let jwt = require('jsonwebtoken')
+
 
 const getUserClothing = (req,res)=>{
     res.header("Access-Control-Allow-Origin", "*");
-    Clothing.find({userId:req.body.userId}).then(
+    // console.log(req.params.userId)
+    Clothing.find({userId:req.params.userId}).then(
         result=>{
-            res.status(200).json(result)
+            console.log(result)
+            const data={
+                "data":result
+            }
+            res.status(200).json(data)
         }
     ).catch(
         err=>{
@@ -15,7 +22,7 @@ const getUserClothing = (req,res)=>{
 
 const getClosetClothing = (req,res)=>{
     res.header("Access-Control-Allow-Origin", "*");
-    Clothing.find({closetId:{$in:req.body.closetId}}).then(
+    Clothing.find({closetId:{$in:req.params.closetId}}).then(
         result=>{
             res.status(200).json(result)
         }
@@ -140,9 +147,19 @@ const removeClothing = (req,res)=>{
 
 
 // const addTo
-
-const wat = (req,res) => {
-    res.status(200).json('wat')
+const editClothing = (req,res) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    Clothing.updateOne({_id:req.body.clothingId},
+                       {photo:req.body.photo,
+                        clothingCategory:req.body.clothingCategory}).then(
+                            response=>{
+                                res.status(200).json('updated')
+                            }
+                        ).catch(
+                            err=>{
+                                res.status(500).json('failed')
+                            }
+                        )
 }
 
-module.exports = { getClosetClothing, getUserClothing ,saveClothing, addToCloset, removeFromCloset, removeClothing ,wat };
+module.exports = { getClosetClothing, getUserClothing ,saveClothing, addToCloset, removeFromCloset, removeClothing, editClothing  };
