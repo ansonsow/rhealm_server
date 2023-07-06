@@ -103,6 +103,8 @@ const editUser = (req,res) => {
   res.header("Access-Control-Allow-Origin", "*");
   User.updateOne({_id:req.body.userId},
                  {profilePhoto:req.body.profilePhoto,
+                  email:req.body.email,
+                  name:req.body.name,
                   hairColor:req.body.hairColor}).then(
                     result=>{
                       res.status(200).json('success')
