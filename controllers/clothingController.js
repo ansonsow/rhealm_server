@@ -151,7 +151,11 @@ const editClothing = (req,res) => {
     res.header("Access-Control-Allow-Origin", "*");
     Clothing.updateOne({_id:req.body.clothingId},
                        {photo:req.body.photo,
-                        clothingCategory:req.body.clothingCategory}).then(
+                        type:req.body.type,
+                        name: req.body.name,
+                        colour: req.body.colour,
+                        texture: req.body.texture
+                    }).then(
                             response=>{
                                 res.status(200).json('updated')
                             }
