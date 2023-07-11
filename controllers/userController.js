@@ -194,7 +194,6 @@ const editUser = (req, res) => {
         console.log(err);
       }
     )
-
 }
 
 

@@ -3,37 +3,37 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const clothingSchema = new Schema({
-    userId:{
-        type:String,
-        require:true,
+    userId: {
+        type: String,
+        require: true,
     },
 
-    name:{
-        type:String
+    name: {
+        type: String
     },
 
-    closetId:{
-        type:[String],
+    closetId: {
+        type: [String],
     },
 
-    photo:{
-        type:[String]
+    photo: {
+        type: [String]
     },
 
-    colour:{
-        type:String
+    colour: {
+        type: Array
     },
 
-    clothingCategory:{
-        type:String
+    clothingCategory: {
+        type: String
     },
 
-    type:{
-        type:String
+    type: {
+        type: String
     },
 
-    texture:{
-        type:String
+    texture: {
+        type: String
     }
 })
 
