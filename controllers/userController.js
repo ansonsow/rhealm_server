@@ -13,7 +13,7 @@ const saveUsers = async (req, res) => {
 
   const existing = await User.findOne({ email: newUser.email });
   if (existing) {
-    res.status(409)
+    return res.status(409)
       .json({ message: "Email has been taken" });
   }
 
@@ -24,7 +24,7 @@ const saveUsers = async (req, res) => {
     result => {
       console.log(result);
       res.status(201)
-        .json("Successfullu registered");
+        .json("Successfully registered");
     }
   ).catch(
     error => {
@@ -41,15 +41,15 @@ const saveUsersOAuth = async (req, res) => {
 
   const existing = await User.findOne({ email: newUser.email });
   if (existing) {
-    res.status(409)
-      .json({ message: "Email has been taken" });
+    return res.status(409)
+      .json({ message: "User already exists" });
   }
 
   newUser.save().then(
     result => {
       console.log(result);
       res.status(201)
-        .json("Successfullu registered");
+        .json("Successfully registered");
     }
   ).catch(
     error => {
@@ -112,10 +112,7 @@ const loginUser = async (req, res) => {
 }
 
 const loginUserOAuth = async (req, res) => {
-  // res.status(200).json("wat")
   const email = req.body.email;
-  // // const user_id = req.body.user_id
-  // // console.log()
   const user = await User.findOne({ email: email });
 
   if (user) {
