@@ -55,34 +55,41 @@ const addToCloset = (req, res) => {
             // console.log(req.body.clothingId)
             // console.log(result)
             // res.status(200).json('wat')
-            if (result.closetId == undefined) {
-                let closetArr = []
-                closetArr.push(req.body.closetId);
-                Clothing.updateOne({ _id: req.body.clothingId },
-                    { $set: { closetId: req.body.closetId } },
-                    { upsert: true }).then(
-                        result => {
-                            res.status(200).json(result)
-                        }
-                    ).catch(
-                        err => {
-                            res.status(500).json(err)
-                        }
-                    )
-            } else {
-                let closetArr = result.closetId;
-                closetArr.push(req.body.closetId)
-                Clothing.updateOne({ _id: req.body.clothingId },
-                    { closetId: closetArr }).then(
-                        result => {
-                            res.status(200).json(result);
-                        }
-                    ).catch(
-                        err => {
-                            res.status(500).json(err)
-                        }
-                    )
+            if (result !== undefined && result !== null){
+                if (result.hasOwnProperty("closetId")) {
+
+                    let closetArr = []
+                    closetArr.push(req.body.closetId);
+                    Clothing.updateOne({ _id: req.body.clothingId },
+                        { $set: { closetId: req.body.closetId } },
+                        { upsert: true }).then(
+                            result => {
+                                res.status(200).json(result)
+                            }
+                        ).catch(
+                            err => {
+                                res.status(500).json(err)
+                            }
+                        )
+                } else {
+                    if(!result.closetId.includes(req.body.closetId)){
+                        let closetArr = result.closetId;
+                        closetArr.push(req.body.closetId)
+                        Clothing.updateOne({ _id: req.body.clothingId },
+                            { closetId: closetArr }).then(
+                                result => {
+                                    res.status(200).json(result);
+                                }
+                            ).catch(
+                                err => {
+                                    res.status(500).json(err)
+                                }
+                            )      
+                    }
+
+                }
             }
+
         }
     )
 
