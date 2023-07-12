@@ -2,11 +2,12 @@ let Closet = require('../models/closet');
 
 // get all the closet from one user.
 const getClosets = async (req, res) => {
-    res.header("Access-Control-Allow-Origin", "*");
+    // res.header("Access-Control-Allow-Origin", "*");
     // console.log(req.body.userId);
     Closet.find({ userId: req.params.userId }).then(
         result => {
-            return res.status(200).json(result)
+
+            res.status(200).json(result)
         }
     ).catch(
         err => {
@@ -14,7 +15,7 @@ const getClosets = async (req, res) => {
         }
     )
 
-    res.status(200).json(req.body)
+
 
 }
 

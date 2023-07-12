@@ -174,6 +174,7 @@ const getUser = (req, res) => {
 
 const editUser = (req, res) => {
   res.header("Access-Control-Allow-Origin", "*");
+
   User.updateOne({ _id: req.body.userId },
     {
       // profilePhoto: req.body.profilePhoto,
@@ -191,6 +192,7 @@ const editUser = (req, res) => {
         console.log(err);
       }
     )
+
 }
 
 
