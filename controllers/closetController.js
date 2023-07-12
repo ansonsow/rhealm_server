@@ -1,16 +1,16 @@
 let Closet = require('../models/closet');
 
 // get all the closet from one user.
-const getClosets = async (req,res)=>{
+const getClosets = async (req, res) => {
     // res.header("Access-Control-Allow-Origin", "*");
     // console.log(req.body.userId);
-    Closet.find({userId:req.params.userId}).then(
-        result=>{
+    Closet.find({ userId: req.params.userId }).then(
+        result => {
 
             res.status(200).json(result)
         }
     ).catch(
-        err=>{
+        err => {
             res.status(500).json(err)
         }
     )
@@ -19,15 +19,15 @@ const getClosets = async (req,res)=>{
 
 }
 
-const saveCloset = async (req,res)=>{
+const saveCloset = async (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
     let newCloset = new Closet(req.body)
     newCloset.save().then(
-        result=>{
+        result => {
             res.status(200).json(result)
         }
     ).catch(
-        err=>{
+        err => {
             res.status(500).json(err)
         }
     )
@@ -35,29 +35,29 @@ const saveCloset = async (req,res)=>{
 }
 
 
-const removeCloset = (req,res) => {
+const removeCloset = (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
-    Closet.deleteOne({_id:req.body.closetId}).then(
+    Closet.deleteOne({ _id: req.body.closetId }).then(
         req.status(200).json('deleted')
     ).catch(
-        err=>{
+        err => {
             req.status(500).json(err)
         }
     )
 }
 
-const updateCloset = (req,res) => {
+const updateCloset = (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
-    Closet.updateOne({_id:req.body.closetId},
-                     {name:req.body.name}).then(
-        res=>{
-            console.log(res)
-        }
-    ).catch(
-        err=>{
-            console.log(err)
-        }
-    )
+    Closet.updateOne({ _id: req.body.closetId },
+        { name: req.body.name }).then(
+            res => {
+                console.log(res)
+            }
+        ).catch(
+            err => {
+                console.log(err)
+            }
+        )
 }
 
-module.exports = { getClosets,saveCloset, removeCloset, updateCloset };
+module.exports = { getClosets, saveCloset, removeCloset, updateCloset };
