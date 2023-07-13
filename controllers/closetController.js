@@ -38,7 +38,7 @@ const saveCloset = async (req, res) => {
 const removeCloset = (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
     Closet.deleteOne({ _id: req.body.closetId }).then(
-        req.status(200).json('deleted')
+        res.status(200).json('deleted')
     ).catch(
         err => {
             req.status(500).json(err)
