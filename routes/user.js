@@ -13,6 +13,8 @@ router.get('/user/:userId', userCtrl.getUser)
 
 router.put('/user', userCtrl.editUser)
 
+router.delete('/user', userCtrl.deleteUser)
+
 
 
 
