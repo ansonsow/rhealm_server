@@ -195,5 +195,17 @@ const editUser = (req, res) => {
 
 }
 
+// delete user
+const deleteUser = (req,res) => {
+  User.deleteOne({_id: req.body.userId}).then(
+    result=>{
+      res.status(200).json("success")
+    }
+  ).catch(
+    err=>{
+      res.status(500).json('failed')
+    }
+  )
+}
 
-module.exports = { saveUsers, loginUser, getUser, editUser, saveUsersOAuth, loginUserOAuth };
+module.exports = { saveUsers, loginUser, getUser, editUser, saveUsersOAuth, loginUserOAuth, deleteUser };
