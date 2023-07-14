@@ -29,11 +29,11 @@ const clothingSchema = new Schema({
     },
 
     type: {
-        type: String
+        type: Array
     },
 
     texture: {
-        type: String
+        type: Array
     }
 })
 
